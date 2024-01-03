@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-prom
+  namespace: prom
+spec:
+  rules:
+  - host: prom.local # remember to add to ur localhost: 127.0.0.1 prom.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: prometheus-server
+            port:
+              number: 80
+  ingressClassName: nginx
