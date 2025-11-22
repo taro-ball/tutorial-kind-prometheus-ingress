@@ -7,7 +7,7 @@ kind create cluster --config 3node.yaml || exit 1
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
 
 # install prometheus
-helm repo update
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts && helm repo update
 helm install prometheus prometheus-community/prometheus --create-namespace --namespace prom || exit 1
 
 # create prometheus ingress 
